@@ -1,0 +1,67 @@
+﻿<Window xmlns:Other="clr-namespace:Proje_filmolog.Other"  x:Class="Proje_filmolog.Users.UsersWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" Loaded="UsersWindow_Loaded"
+        Title="KULLANICI" Height="600" Width="1000" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" FontSize="16">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Proje_filmolog;component/Assets/a.jpg"  Stretch="Fill" TileMode="Tile" 
+                        ViewportUnits="Absolute" Viewport="0,0,1100,600"/>
+        </Grid.Background>
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <RectAnimation Storyboard.TargetProperty="Background.Viewport" To="-100,0,1100,600" Duration="0:0:5" AutoReverse="True" RepeatBehavior="Forever"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Grid.Triggers>
+        <Button x:Name="btn_FilmListesi" Content="Film Litesi" Click="AllFilmButton_Click" Margin="15,505,0,55" HorizontalAlignment="Left" Width="200"/>
+        <Button x:Name="btn_Favorilerim" Content="Favorilerim" Click="FavFilmButton_Click" Margin="215,505,585,55"/>
+        <ListView x:Name="FilmListView" SelectionChanged="ListView_SelectionChanged_1" Background="#7FFFFFFF" Margin="15,90,585,110" HorizontalContentAlignment="Center">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Film Adı" Width="400" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBox x:Name="SearchBox" Grid.Row="0" ToolTip="Film Ara" TextChanged="TextBox_TextChanged" Margin="15,50,585,520" Background="#E5FFFFFF"/>
+        <Button Content="#" HorizontalAlignment="Left" FontSize="30" Margin="945,565,0,0" ToolTip="OTURUMU KAPAT" VerticalAlignment="Top" Width="50" Background="White" Click="LogOut" Foreground="LightSeaGreen" FontFamily="Webdings" Height="30"/>
+        <Other:BAR HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="1000"/>
+        <Grid HorizontalAlignment="Left" Height="495" Margin="425,50,0,0" VerticalAlignment="Top" Width="555" Background="#7FFFFFFF">
+            <Label Content="Fil adı:" Margin="15,10,430,455" FontSize="18" FontWeight="Bold"  />
+            <Label Content="Yönetmen:" HorizontalAlignment="Left" Margin="15,45,0,0" VerticalAlignment="Top" FontSize="18" Width="100" Height="35" FontWeight="Bold"/>
+            <Label Content="Oyuncular:" HorizontalAlignment="Left" Margin="15,75,0,0" VerticalAlignment="Top" FontSize="18" Width="100" Height="35" FontWeight="Bold"/>
+            <TextBox x:Name="film_hakkinda" HorizontalAlignment="Left" FontSize="18" IsEnabled="False" Margin="20,145,0,200" TextWrapping="Wrap" Width="515" Background="#7FFFFFFF"/>
+            <Label Content="Puan:" HorizontalAlignment="Left" Margin="15,105,0,0" VerticalAlignment="Top" FontSize="18" Width="100" Height="30" FontWeight="Bold"/>
+            <TextBox x:Name="tb_yorum" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextWrapping="Wrap" ToolTip="Lütfen yorumlarınızı bildiriniz ☻" Width="415" Margin="70,440,0,10" Background="White"/>
+            <Button x:Name="Good" Content="J" HorizontalAlignment="Left" Click="Good_Click" Margin="20,440,0,0" VerticalAlignment="Top" Background="#FFF9F3F3" FontFamily="Wingdings" FontSize="30" Height="45"/>
+            <Popup PopupAnimation="Fade" Placement="MousePoint"  Margin="5" PlacementTarget="{Binding ElementName=Good}"
+                               IsOpen="{Binding IsMouseOver, ElementName=Good, Mode=OneWay}" AllowsTransparency="True">
+                <Grid>
+                    <Border BorderThickness="1" BorderBrush="Blue" Background="Wheat" CornerRadius="10" Height="50">
+                        <TextBlock  Text="  Filmin Favorilere Eklenmesi &#xa;  İçin Yorum Yapıp Gönderin   " VerticalAlignment="Center" Margin="1,6,-1,-1"/>
+                    </Border>
+                </Grid>
+            </Popup>
+            <Button x:Name="Bad" Content="L" HorizontalAlignment="Left" Click="Good_Click" VerticalAlignment="Top" FontSize="30" Margin="490,440,0,0" FontFamily="Wingdings" Height="45"/>
+            <Label x:Name="film_adi" Content="name" Margin="150,10,5,445" FontSize="18" FontWeight="Bold"/>
+            <Label x:Name="yonetmen" Content="Dir" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="150,45,0,0" FontSize="18" Width="400" FontWeight="Bold" Height="40"/>
+            <Label x:Name="oyuncular" Content="star" Margin="150,70,5,385" FontSize="18" Width="400" FontWeight="Bold" />
+            <Label x:Name="puan" Content="88" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="150,105,0,0" FontSize="18" Width="400" FontWeight="Bold" Height="40"/>
+            <Button x:Name="btn_gonder" Content="Gönder" HorizontalAlignment="Left" Margin="240,495,0,-30" VerticalAlignment="Top" Width="75" Click="Btn_gonder_Click"/>
+            <ListView x:Name="listView_yorumlar" HorizontalAlignment="Left" Height="135" Margin="20,300,0,0" VerticalAlignment="Top" Width="515">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Film Yorumları" Width="495"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+        <Label x:Name="NotFoundLabel" Content="L" Height="340" HorizontalContentAlignment="Center" Visibility="Collapsed" FontSize="300" Width="350" FontFamily="Wingdings" Margin="35,120,615,140" Foreground="#7F3F3F3F"/>
+        <Button Margin="890,565,60,5" x:Name="InfoBtn" Content="i" Click="Info_Click" FontFamily="Webdings" ToolTip="SEÇENEKLER" Foreground="#FFD84949" FontSize="30"/>
+    </Grid>
+</Window>

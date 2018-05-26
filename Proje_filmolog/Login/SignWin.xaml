@@ -1,0 +1,187 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Other="clr-namespace:Proje_filmolog.Other" x:Class="Proje_filmolog.Login.SignWin"
+        mc:Ignorable="d"
+        Title="ÜYE OL" Height="600" Width="1000" 
+        ResizeMode="NoResize" WindowStyle="None"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="IsThere"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Proje_filmolog;component/Assets/5.png"  Stretch="Fill" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,1000,600"/>
+        </Grid.Background>
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <RectAnimation Storyboard.TargetProperty="Background.Viewport" To="1000,0,1000,600" Duration="0:0:25" RepeatBehavior="Forever"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Grid.Triggers>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Margin="20" Grid.Row="1" >
+                <Grid>
+                    <TextBlock x:Name="RealNameTboxHint" Text="Ad Soyad" Panel.ZIndex="1" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#7FC2246E" Margin="14,17,222,17"/>
+                    <TextBox x:Name="RealNameTbox" Margin="10" BorderBrush="#FF3F619C" TextChanged="TBOX_TextChanged" HorizontalContentAlignment="Center"/>
+                    <Popup x:Name="RealNamePopup" PopupAnimation="Fade" Placement="Right" 
+                           PlacementTarget="{Binding ElementName=RealNameTbox}"
+                           IsOpen="{Binding IsFocused, ElementName=RealNameTbox, Mode=OneWay}" 
+                           StaysOpen="{Binding IsKeyboardFocusWithin, ElementName=RealNameTbox, Mode=OneWay}"
+                           AllowsTransparency="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="Red" CornerRadius="0,0,0,100" Height="10" VerticalAlignment="Top"/>
+                            <Border Grid.Column="1" BorderThickness="2" BorderBrush="Red" Background="LightBlue" CornerRadius="0,10,10,10" Height="50">
+                                <TextBlock Text="   Adınızı ve soyadınızı giriniz    " VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </Popup>
+                </Grid>
+                <Grid>
+                    <TextBlock x:Name="UserNameTboxHint" Text="Kullanıcı Adı" Panel.ZIndex="1"
+                           VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#7FC2246E" Margin="18,17,207,17" Width="69"/>
+                    <TextBox x:Name="UserNameTbox" Margin="10" BorderBrush="#FF3F619C"
+                         TextChanged="TBOX_TextChanged"
+                         HorizontalContentAlignment="Center"/>
+                    <Popup x:Name="UserNamePopup" PopupAnimation="Fade" Placement="Right" 
+                       PlacementTarget="{Binding ElementName=UserNameTbox}"
+                       IsOpen="{Binding IsFocused, ElementName=UserNameTbox, Mode=OneWay}" 
+                       StaysOpen="{Binding IsKeyboardFocusWithin, ElementName=UserNameTbox, Mode=OneWay}"
+                       AllowsTransparency="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="Red" CornerRadius="0,0,0,100" Height="10" VerticalAlignment="Top"/>
+                            <Border Grid.Column="1" BorderThickness="2" BorderBrush="Red" Background="LightBlue" CornerRadius="0,10,10,10" Height="50">
+                                <TextBlock Text="  Kullanıcı adınızı belirleyiniz  " VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </Popup>
+                </Grid>
+                <Grid>
+                    <TextBlock x:Name="TelNoTboxHint" Text="Telefon" Panel.ZIndex="1"
+                           VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#7FC2246E" Margin="20,17,237,17"/>
+                    <TextBox x:Name="TelNoTbox" Margin="10" BorderBrush="#FF3F619C" MaxLength="10"
+                         TextChanged="TBOX_TextChanged" PreviewTextInput="TelNoTbox_PreviewTextInput"
+                         HorizontalContentAlignment="Center"/>
+                    <Popup x:Name="TelNoPopup" PopupAnimation="Fade" Placement="Right"
+                           PlacementTarget="{Binding ElementName=TelNoTbox}"
+                           IsOpen="{Binding IsFocused, ElementName=TelNoTbox, Mode=OneWay}" 
+                           StaysOpen="{Binding IsKeyboardFocusWithin, ElementName=TelNoTbox, Mode=OneWay}"
+                           AllowsTransparency="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="Red" CornerRadius="0,0,0,100" Height="10" VerticalAlignment="Top"/>
+                            <Border Grid.Column="1" BorderThickness="2" BorderBrush="Red" Background="LightBlue" CornerRadius="0,10,10,10" Height="50">
+                                <TextBlock Text="   Telefon numaranızı giriniz    " VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </Popup>
+                </Grid>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <TextBlock x:Name="PasswordBoxHint" Text="Şifre" Panel.ZIndex="1"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#7FC2246E" Margin="20,17,103,17"/>
+                        <PasswordBox x:Name="PasswordBox" Grid.Column="0" Margin="10" 
+                                 BorderBrush="#FF3F619C" 
+                                 PasswordChanged="PasswordBox_PasswordChanged"
+                                 HorizontalContentAlignment="Center"/>
+                        <Popup x:Name="PasswordPopup" PopupAnimation="Fade" Placement="Right"
+                               PlacementTarget="{Binding ElementName=PasswordBox}"
+                               IsOpen="{Binding IsFocused, ElementName=PasswordBox, Mode=OneWay}" 
+                               StaysOpen="{Binding IsKeyboardFocusWithin, ElementName=PasswordBox, Mode=OneWay}"
+                               AllowsTransparency="True">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0" Background="Red" CornerRadius="0,0,0,100" Height="10" VerticalAlignment="Top"/>
+                                <Border Grid.Column="1" BorderThickness="2" BorderBrush="Red" Background="LightBlue" CornerRadius="0,10,10,10" Height="50">
+                                    <TextBlock Text="   Parolanızı giriniz    " VerticalAlignment="Center"/>
+                                </Border>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <TextBlock x:Name="Password2BoxHint" Text="Şifre Tekrar" Panel.ZIndex="1"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#7FC2246E" Margin="17,17,72,17"/>
+                        <PasswordBox x:Name="Password2Box" Grid.Column="1" Margin="10" BorderBrush="#FF3F619C" 
+                                 PasswordChanged="PasswordBox_PasswordChanged"
+                                 HorizontalContentAlignment="Center"/>
+                        <Popup x:Name="Password2Popup" PopupAnimation="Fade" Placement="Right"
+                               PlacementTarget="{Binding ElementName=Password2Box}"
+                               IsOpen="{Binding IsFocused, ElementName=Password2Box, Mode=OneWay}" 
+                               StaysOpen="{Binding IsKeyboardFocusWithin, ElementName=Password2Box, Mode=OneWay}"
+                               AllowsTransparency="True">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0" Background="Red" CornerRadius="0,0,0,100" Height="10" VerticalAlignment="Top"/>
+                                <Border Grid.Column="1" BorderThickness="2" BorderBrush="Red" Background="LightBlue" CornerRadius="0,10,10,10" Height="50">
+                                    <TextBlock Text="   Parolanızı tekrar giriniz    " VerticalAlignment="Center"/>
+                                </Border>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                </Grid>
+                <Grid>
+                    <TextBlock x:Name="AdminKeyTboxHint" Text="Adminkey" Panel.ZIndex="1"
+                               VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#7FC2246E" Margin="20,17,222,17"/>
+                    <TextBox  x:Name="AdminKeyTbox" Margin="10" BorderBrush="#FF3F619C" 
+                          TextChanged="TBOX_TextChanged"
+                          HorizontalContentAlignment="Center"/>
+                    <Popup x:Name="AdminKeyPopup" PopupAnimation="Fade" Placement="Right"
+                           PlacementTarget="{Binding ElementName=AdminKeyTbox}"
+                           IsOpen="{Binding IsFocused, ElementName=AdminKeyTbox, Mode=OneWay}" 
+                           StaysOpen="{Binding IsKeyboardFocusWithin, ElementName=AdminKeyTbox, Mode=OneWay}"
+                           AllowsTransparency="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="Red" CornerRadius="0,0,0,100" Height="10" VerticalAlignment="Top"/>
+                            <Border Grid.Column="1" BorderThickness="2" BorderBrush="Red" Background="LightBlue" CornerRadius="0,10,10,10" Height="50">
+                                <TextBlock Text="   Admin hesabı oluşturulması için&#xA;   adminkey girilmesi gereklidir.    " VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </Popup>
+                </Grid>
+            </StackPanel>
+            <Button Content="HESABI OLUŞTUR" HorizontalAlignment="Left" Margin="87,345,0,0" Grid.Row="1" VerticalAlignment="Top" Width="155" Click="Button_Click"/>
+        </Grid>
+        <Other:BAR HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="1000" Grid.ColumnSpan="3" Panel.ZIndex="8"/>
+        <Button Content="F" Grid.Column="2" HorizontalAlignment="Left" ToolTip="ANA EKRAN" Click="GoBack" Margin="278,565,0,0" Foreground="MediumSeaGreen" VerticalAlignment="Top" Width="50" FontFamily="Wingdings" FontSize="30" Height="30"/>
+    </Grid>
+</Window>

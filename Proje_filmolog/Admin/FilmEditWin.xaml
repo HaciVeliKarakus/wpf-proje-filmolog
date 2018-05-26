@@ -1,0 +1,137 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Other="clr-namespace:Proje_filmolog.Other" x:Class="Proje_filmolog.Admin.FilmEditWin"
+        mc:Ignorable="d"
+        Title="FİLMLER" Height="600" Width="1000" 
+        Loaded="Window_Loaded" Background="#FF181818"
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        ResizeMode="NoResize">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Proje_filmolog;component/Assets/4.png"  Stretch="Fill" TileMode="Tile" 
+                        ViewportUnits="Absolute" Viewport="0,0,1500,1000"/>
+        </Grid.Background>
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <RectAnimation Storyboard.TargetProperty="Background.Viewport"
+                                           To="-500,0,1500,1000" Duration="0:0:25" AutoReverse="True" RepeatBehavior="Forever"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Grid.Triggers>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid  Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <ListView x:Name="FilmListView" MouseDoubleClick="FilmListView_DoubleClick" KeyDown="FilmListView_KeyDown" FontSize="15" Background="#66FFFFFF" Margin="0,30,0,0">
+                    <ListView.View>
+                        <GridView x:Name="gridViewOfFilmList">
+                            <GridViewColumn Header="SIRALAMA" DisplayMemberBinding="{Binding rank}" Width="70"/>
+                            <GridViewColumn Header="FİLM ADI" DisplayMemberBinding="{Binding name}" Width="380"/>
+                            <GridViewColumn Header="PUAN" DisplayMemberBinding="{Binding rate}" Width="40"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Other:BAR HorizontalAlignment="Left" Height="30" Margin="0,0,-500,0" VerticalAlignment="Top" Width="1000"/>
+            </Grid>
+            <Grid Grid.Row="1" Background="#7F000000">
+                <DockPanel>
+                    <ComboBox x:Name="PageCbox" Grid.Column="0" VerticalAlignment="Center" Margin="15,10"  Cursor="Hand" HorizontalContentAlignment="Center" SelectionChanged="PageCbox_SelectionChanged" Width="360" HorizontalAlignment="Left">
+                        <ComboBoxItem Content="Sayfa numarası seçiniz" IsSelected="True"/>
+                    </ComboBox>
+                    <Popup PopupAnimation="Fade" Placement="MousePoint" PlacementTarget="{Binding ElementName=PageCbox}"
+                           IsOpen="{Binding IsMouseOver, ElementName=PageCbox, Mode=OneWay}" AllowsTransparency="True">
+                        <Grid>
+                            <Border Grid.Column="1" BorderThickness="1" BorderBrush="Blue" Background="LightSeaGreen" CornerRadius="10" Height="50">
+                                <TextBlock  Text="       Yeni filmler eklemek isterseniz &#xA;       sayfa sayısını seçtikten sonra      &#xA;           güncellemeyi başlatınız.   " VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </Popup>
+                    <Grid Grid.Column="1" Width="100">
+                        <Button Grid.Column="1" Content="8" x:Name="GetButton" Click="GetButton_Click" Margin="5,10,15,10" FontFamily="Webdings" FontSize="30" Foreground="DarkSlateGray" />
+                        <Popup PopupAnimation="Fade" Placement="MousePoint"  Margin="5" PlacementTarget="{Binding ElementName=GetButton}"
+                               IsOpen="{Binding IsMouseOver, ElementName=GetButton, Mode=OneWay}" AllowsTransparency="True">
+                            <Grid>
+                                <Border BorderThickness="1" BorderBrush="Blue" Background="LightSeaGreen" CornerRadius="10" Height="50">
+                                    <TextBlock  Text="  Güncelleme yapılırken lütfen bekleyin   " VerticalAlignment="Center"/>
+                                </Border>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                </DockPanel>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <TextBox IsEnabled="False" Text="FİLM ARA..." HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="22" Margin="0,30,335,485" Grid.RowSpan="2"/>
+            <TextBox x:Name="SearchBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                 TextChanged="SearchBox_TextChanged" Margin="165,30,2,485" Grid.RowSpan="2"/>
+            <Popup x:Name="UserNamePopup" PopupAnimation="Fade" Placement="Right" 
+                       PlacementTarget="{Binding ElementName=SearchBox}"
+                       IsOpen="{Binding IsFocused, ElementName=SearchBox, Mode=OneWay}" 
+                       StaysOpen="{Binding IsKeyboardFocusWithin, ElementName=SearchBox, Mode=OneWay}"
+                       AllowsTransparency="True">
+                <Grid Margin="5,0,0,0">
+                    <Border Grid.Column="1" BorderThickness="1" BorderBrush="Blue" Background="LightBlue" CornerRadius="10" Height="50">
+                        <TextBlock Text="   Sistemdeki kayıtlı filmlerden    &#xA;         arama yapabilirsin.  " VerticalAlignment="Center"/>
+                    </Border>
+                </Grid>
+            </Popup>
+            <Label Content="L" HorizontalAlignment="Left" Margin="130,35,0,-34" VerticalAlignment="Top" FontFamily="Webdings" FontSize="24" RenderTransformOrigin="0.802,0.418">
+                <Label.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-26"/>
+                        <TranslateTransform X="-2.261" Y="-4.22"/>
+                    </TransformGroup>
+                </Label.RenderTransform>
+            </Label>
+            <Grid  Grid.Row="1">
+                <ListView x:Name="StockList" MouseDoubleClick="StockList_DoubleClick" KeyDown="StockList_KeyDown" Background="#66FFFFFF" FontSize="15" Margin="0,35,0,0" Width="500" >
+                    <ListView.View>
+                        <GridView x:Name="gridViewOfFilmList_inDB">
+                            <GridViewColumn Header="Sıralama" DisplayMemberBinding="{Binding rank}" Width="65"/>
+                            <GridViewColumn Header="Film Adı" DisplayMemberBinding="{Binding name}" Width="320"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <ListView x:Name="SearchList" MouseDoubleClick="StockList_DoubleClick" KeyDown="StockList_KeyDown" Width="0" FontSize="15" HorizontalAlignment="Right" Margin="0,35,0,0" RenderTransformOrigin="0.5,0.5" Background="#FFFFE7E7">
+                    <ListView.View>
+                        <GridView x:Name="gridViewOfFilmList_search">
+                            <GridViewColumn Header="Sıralama" DisplayMemberBinding="{Binding rank}" Width="65"/>
+                            <GridViewColumn Header="Film Adı" DisplayMemberBinding="{Binding name}" Width="222"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Label Content="L" x:Name="NotFoundTxt" Visibility="Visible" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top" FontSize="300" FontFamily="Wingdings" Width="{Binding ElementName=SearchList, Path=Width}" Height="515"/>
+            </Grid>
+            <Grid Grid.Row="2" Background="#7F000000">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" Margin="9,10,11,10" x:Name="UserEditBtn" Content="m" Click="UserEditBtn_Click" ToolTip="KULLANICILARI DÜZENLE" FontFamily="Webdings" FontSize="30" Foreground="#FFD84949"/>
+                <Button Grid.Column="2" Margin="10" x:Name="InfoBtn" Content="i" Click="Info_Click" FontFamily="Webdings" ToolTip="SEÇENEKLER" Foreground="#FFD84949" FontSize="30"/>
+            </Grid>
+            <Button Content="#" HorizontalAlignment="Left" FontSize="30" Margin="440,10,0,0" Grid.Row="2" ToolTip="OTURUMU KAPAT" VerticalAlignment="Top" Width="50" Background="White" Click="Button_Click" Foreground="LightSeaGreen" FontFamily="Webdings" Height="30"/>
+        </Grid>
+    </Grid>
+</Window>
