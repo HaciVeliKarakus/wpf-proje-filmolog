@@ -1,9 +1,9 @@
 ﻿namespace Proje_filmolog.Other
 {
-    class TEMP
+    internal static class Temp
     {
-        public static string active_User;
+        public static string ActiveUser;
         public static byte AccType;
-        public static int isGood;
+        public static int IsGood;
     }
 }

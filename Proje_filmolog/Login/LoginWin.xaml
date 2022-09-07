@@ -1,92 +1,98 @@
 ﻿<Window
-            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-            xmlns:Other="clr-namespace:Proje_filmolog.Other" x:Class="Proje_filmolog.Login.LoginWin"
-            mc:Ignorable="d" WindowStyle="None"
-            Title="GİRİŞ YAP" Height="600" Width="1000"
-            ResizeMode="NoResize"
-            WindowStartupLocation="CenterScreen">
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:other="clr-namespace:Proje_filmolog.Other" x:Class="Proje_filmolog.Login.LoginWin"
+    mc:Ignorable="d" WindowStyle="None"
+    Title="GİRİŞ YAP" Height="600" Width="1000"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Proje_filmolog;component/Assets/2.jpg"  Stretch="Fill" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,1000,600"/>
+            <ImageBrush ImageSource="/Proje_filmolog;component/Assets/2.jpg"
+                        Stretch="Fill"
+                        TileMode="Tile"
+                        ViewportUnits="Absolute"
+                        Viewport="0,0,1000,600" />
         </Grid.Background>
         <Grid.Triggers>
             <EventTrigger RoutedEvent="FrameworkElement.Loaded">
                 <BeginStoryboard>
                     <Storyboard>
                         <RectAnimation Storyboard.TargetProperty="Background.Viewport"
-                                       To="0,333,1000,600" Duration="0:0:15" 
-                                       AutoReverse="True" RepeatBehavior="Forever"/>
+                                       To="0,333,1000,600"
+                                       Duration="0:0:15"
+                                       AutoReverse="True"
+                                       RepeatBehavior="Forever" />
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
         </Grid.Triggers>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
 
         <Grid x:Name="grid_MainWindow_mainGrid" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="100"/>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <Label x:Name="UserNameTxt" 
-                       Content="Hoşgeldiniz" 
-                       FontSize="60" 
+                <Label x:Name="UserNameTxt"
+                       Content="Hoşgeldiniz"
+                       FontSize="60"
                        VerticalContentAlignment="Center"
-                       HorizontalContentAlignment="Center" 
+                       HorizontalContentAlignment="Center"
                        FontFamily="Segoe UI Black">
                     <Label.Foreground>
-                        <ImageBrush ImageSource="/Proje_filmolog;component/Assets/2.jpg"/>
+                        <ImageBrush ImageSource="/Proje_filmolog;component/Assets/2.jpg" />
                     </Label.Foreground>
                     <Label.Background>
-                        <ImageBrush/>
+                        <ImageBrush />
                     </Label.Background>
                     <Label.Effect>
-                        <DropShadowEffect Color="White" Direction="284"/>
+                        <DropShadowEffect Color="White" Direction="284" />
                     </Label.Effect>
                     <Label.Triggers>
                         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
                             <BeginStoryboard>
                                 <Storyboard x:Name="st" RepeatBehavior="Forever">
-                                    <StringAnimationUsingKeyFrames 
+                                    <StringAnimationUsingKeyFrames
                                         Storyboard.TargetProperty="(ContentControl.Content)"
                                         Duration="0:0:3"
                                         AutoReverse="True">
-                                        <DiscreteStringKeyFrame Value="" KeyTime="0:0:0"/>
-                                        <DiscreteStringKeyFrame Value="H" KeyTime="0:0:0.1"/>
-                                        <DiscreteStringKeyFrame Value="HO" KeyTime="0:0:0.2"/>
-                                        <DiscreteStringKeyFrame Value="HOŞ" KeyTime="0:0:0.4"/>
-                                        <DiscreteStringKeyFrame Value="HOŞG" KeyTime="0:0:0.6"/>
-                                        <DiscreteStringKeyFrame Value="HOŞGE" KeyTime="0:0:0.8"/>
-                                        <DiscreteStringKeyFrame Value="HOŞGEL" KeyTime="0:0:1"/>
-                                        <DiscreteStringKeyFrame Value="HOŞGELD" KeyTime="0:0:1.2"/>
-                                        <DiscreteStringKeyFrame Value="HOŞGELDİ" KeyTime="0:0:1.4"/>
-                                        <DiscreteStringKeyFrame Value="HOŞGELDİN" KeyTime="0:0:1.6"/>
-                                        <DiscreteStringKeyFrame Value="HOŞGELDİNİ" KeyTime="0:0:1.8"/>
-                                        <DiscreteStringKeyFrame Value="HOŞGELDİNİZ" KeyTime="0:0:2.0"/>
+                                        <DiscreteStringKeyFrame Value="" KeyTime="0:0:0" />
+                                        <DiscreteStringKeyFrame Value="H" KeyTime="0:0:0.1" />
+                                        <DiscreteStringKeyFrame Value="HO" KeyTime="0:0:0.2" />
+                                        <DiscreteStringKeyFrame Value="HOŞ" KeyTime="0:0:0.4" />
+                                        <DiscreteStringKeyFrame Value="HOŞG" KeyTime="0:0:0.6" />
+                                        <DiscreteStringKeyFrame Value="HOŞGE" KeyTime="0:0:0.8" />
+                                        <DiscreteStringKeyFrame Value="HOŞGEL" KeyTime="0:0:1" />
+                                        <DiscreteStringKeyFrame Value="HOŞGELD" KeyTime="0:0:1.2" />
+                                        <DiscreteStringKeyFrame Value="HOŞGELDİ" KeyTime="0:0:1.4" />
+                                        <DiscreteStringKeyFrame Value="HOŞGELDİN" KeyTime="0:0:1.6" />
+                                        <DiscreteStringKeyFrame Value="HOŞGELDİNİ" KeyTime="0:0:1.8" />
+                                        <DiscreteStringKeyFrame Value="HOŞGELDİNİZ" KeyTime="0:0:2.0" />
                                     </StringAnimationUsingKeyFrames>
-                                    <StringAnimationUsingKeyFrames 
+                                    <StringAnimationUsingKeyFrames
                                         Storyboard.TargetProperty="(ContentControl.Content)"
                                         Duration="0:0:4"
                                         AutoReverse="True" BeginTime="0:0:6">
-                                        <DiscreteStringKeyFrame Value="" KeyTime="0:0:0"/>
-                                        <DiscreteStringKeyFrame Value="F" KeyTime="0:0:0.2"/>
-                                        <DiscreteStringKeyFrame Value="Fİ" KeyTime="0:0:0.4"/>
-                                        <DiscreteStringKeyFrame Value="FİL" KeyTime="0:0:0.6"/>
-                                        <DiscreteStringKeyFrame Value="FİLM" KeyTime="0:0:0.8"/>
-                                        <DiscreteStringKeyFrame Value="FİLMO" KeyTime="0:0:1"/>
-                                        <DiscreteStringKeyFrame Value="FİLMOL" KeyTime="0:0:1.2"/>
-                                        <DiscreteStringKeyFrame Value="FİLMOLO" KeyTime="0:0:1.4"/>
-                                        <DiscreteStringKeyFrame Value="FİLMOLOG" KeyTime="0:0:1.6"/>
+                                        <DiscreteStringKeyFrame Value="" KeyTime="0:0:0" />
+                                        <DiscreteStringKeyFrame Value="F" KeyTime="0:0:0.2" />
+                                        <DiscreteStringKeyFrame Value="Fİ" KeyTime="0:0:0.4" />
+                                        <DiscreteStringKeyFrame Value="FİL" KeyTime="0:0:0.6" />
+                                        <DiscreteStringKeyFrame Value="FİLM" KeyTime="0:0:0.8" />
+                                        <DiscreteStringKeyFrame Value="FİLMO" KeyTime="0:0:1" />
+                                        <DiscreteStringKeyFrame Value="FİLMOL" KeyTime="0:0:1.2" />
+                                        <DiscreteStringKeyFrame Value="FİLMOLO" KeyTime="0:0:1.4" />
+                                        <DiscreteStringKeyFrame Value="FİLMOLOG" KeyTime="0:0:1.6" />
                                     </StringAnimationUsingKeyFrames>
                                 </Storyboard>
                             </BeginStoryboard>
@@ -95,18 +101,46 @@
                 </Label>
             </Grid>
             <Grid Grid.Row="1">
-                <TextBox  Focusable="True"
-                     HorizontalContentAlignment="Center" Margin="40,10" VerticalAlignment="Center"
-                     x:Name="UserNameTbox" BorderBrush="#FF3F619C" FontSize="16" ToolTip="KULLANICI ADINIIZ"/>
+                <TextBox Focusable="True"
+                         HorizontalContentAlignment="Center"
+                         Margin="40,10"
+                         VerticalAlignment="Center"
+                         x:Name="UserNameTbox"
+                         BorderBrush="#FF3F619C"
+                         FontSize="16"
+                         ToolTip="KULLANICI ADINIIZ" />
             </Grid>
             <Grid Grid.Row="2">
-                <PasswordBox  VerticalAlignment="Top" HorizontalContentAlignment="Center"  BorderBrush="#FF3F619C"
-                         Margin="40,10" x:Name="PassWordTbox" FontSize="16" ToolTip="SİFRENİZ" KeyDown="PassWordTbox_KeyDown"/>
-                <Button Content="GİRİŞ YAP" HorizontalAlignment="Left" Margin="39,70,0,0" VerticalAlignment="Top" Width="170" FontWeight="Bold" Click="Login"/>
-                <Button Content="HESAP OLUŞTUR" HorizontalAlignment="Left" Margin="219,70,0,0" FontWeight="Light" VerticalAlignment="Top" Width="170" Click="Sign" />
+                <PasswordBox VerticalAlignment="Top"
+                             HorizontalContentAlignment="Center"
+                             BorderBrush="#FF3F619C"
+                             Margin="40,10"
+                             x:Name="PassWordTbox"
+                             FontSize="16"
+                             ToolTip="SİFRENİZ"
+                             KeyDown="PassWordTbox_KeyDown" />
+                <Button Content="GİRİŞ YAP"
+                        HorizontalAlignment="Left"
+                        Margin="39,70,0,0"
+                        VerticalAlignment="Top"
+                        Width="170"
+                        FontWeight="Bold"
+                        Click="Login" />
+                <Button Content="HESAP OLUŞTUR"
+                        HorizontalAlignment="Left"
+                        Margin="219,70,0,0"
+                        FontWeight="Light"
+                        VerticalAlignment="Top"
+                        Width="170"
+                        Click="Sign" />
             </Grid>
 
         </Grid>
-        <Other:BAR HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="1000" Grid.ColumnSpan="3"/>
+        <other:BAR HorizontalAlignment="Left"
+                   Height="30"
+                   VerticalAlignment="Top"
+                   Width="1000"
+                   Grid.ColumnSpan="3"
+                   Grid.Column="0" />
     </Grid>
 </Window>

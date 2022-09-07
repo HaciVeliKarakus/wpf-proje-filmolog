@@ -1,6 +1,4 @@
 ﻿using System.Reflection;
-using System.Resources;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
 
@@ -33,11 +31,11 @@ using System.Windows;
 
 [assembly: ThemeInfo(
     ResourceDictionaryLocation.None, //temaya özgü kaynak sözlüklerinin bulunduğu yer
-                                     //(bir kaynak sayfada
-                                     // uygulama kaynak sözlüklerinde bulunamazsa kullanılır)
+    //(bir kaynak sayfada
+    // uygulama kaynak sözlüklerinde bulunamazsa kullanılır)
     ResourceDictionaryLocation.SourceAssembly //genel kaynak sözlüğünün bulunduğu yer
-                                              //(bir kaynak sayfada
-                                              // uygulama veya herhangi bir temaya özgü kaynak sözlüklerinde bulunamazsa kullanılır)
+    //(bir kaynak sayfada
+    // uygulama veya herhangi bir temaya özgü kaynak sözlüklerinde bulunamazsa kullanılır)
 )]
 
 

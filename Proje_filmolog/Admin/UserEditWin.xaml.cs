@@ -1,24 +1,31 @@
 ﻿using System;
-using System.Data;
 using System.Data.SQLite;
-using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Proje_filmolog.Admin
 {
     /// <summary>
-    /// Interaction logic for UserEditWin.xaml
+    ///     Interaction logic for UserEditWin.xaml
     /// </summary>
     public partial class UserEditWin : Window
     {
-        public UserEditWin() => InitializeComponent();
+        private static bool activite;
 
-        FilmComponents filmAddComponent = new FilmComponents();
-        static private bool activite;
+        private readonly FilmComponents filmAddComponent = new FilmComponents();
 
-        private void Window_Loaded(object sender, RoutedEventArgs e) => filmAddComponent.AddUsersListViev_inDB(userListView);
+        public UserEditWin()
+        {
+            InitializeComponent();
+        }
 
-        private void UserListView_doubleClik(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            filmAddComponent.AddUsersListViev_inDB(userListView);
+        }
+
+        private void UserListView_doubleClik(object sender, MouseButtonEventArgs e)
         {
             remark_ListView.Items.Clear();
             activite = filmAddComponent.showUser(userListView, lbl_realName, lbl_UserName, lbl_TelNo);
@@ -29,7 +36,7 @@ namespace Proje_filmolog.Admin
                 Banner.Content = "BANI KALDIR";
         }
 
-        private void UserSearchBox_textChange(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void UserSearchBox_textChange(object sender, TextChangedEventArgs e)
         {
             userListView.Items.Clear();
             if (string.IsNullOrEmpty(UserSearchBox.Text.Trim()))
@@ -40,12 +47,13 @@ namespace Proje_filmolog.Admin
 
         private void Banner_Click(object sender, RoutedEventArgs e)
         {
-            using (SQLiteConnection connection = new SQLiteConnection("data source = filmolog.db; Version=3;"))
+            using (var connection = new SQLiteConnection("data source = filmolog.db; Version=3;"))
             {
                 try
                 {
                     connection.Open();
-                    using (SQLiteCommand cmd_update = new SQLiteCommand("update Users set isActive=@actv where userName=@uname", connection))
+                    using (var cmd_update = new SQLiteCommand("update Users set isActive=@actv where userName=@uname",
+                               connection))
                     {
                         try
                         {
@@ -60,6 +68,7 @@ namespace Proje_filmolog.Admin
                                 cmd_update.Parameters.AddWithValue("@actv", true);
                                 activite = true;
                             }
+
                             cmd_update.ExecuteNonQuery();
                         }
                         catch (Exception ex)
@@ -72,8 +81,12 @@ namespace Proje_filmolog.Admin
                 {
                     MessageBox.Show("Hata No:17\n" + ex.Message);
                 }
-                finally { connection.Close(); }
+                finally
+                {
+                    connection.Close();
+                }
             }
+
             activite = filmAddComponent.showUser(userListView, lbl_realName, lbl_UserName, lbl_TelNo);
             if (activite)
                 Banner.Content = "BANLA";
@@ -83,7 +96,7 @@ namespace Proje_filmolog.Admin
 
         private void Films_Click(object sender, RoutedEventArgs e)
         {
-            FilmEditWin win = new FilmEditWin();
+            var win = new FilmEditWin();
             win.Show();
             Close();
         }

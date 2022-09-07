@@ -1,31 +1,29 @@
 ﻿using System;
-using System.Media;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Threading;
+using Proje_filmolog.Login;
 
 namespace Proje_filmolog
 {
     /// <summary>
-    /// MainWindow.xaml etkileşim mantığı
+    ///     MainWindow.xaml etkileşim mantığı
     /// </summary>
     public partial class MainWindow : Window
     {
+        private DispatcherTimer timer;
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        DispatcherTimer timer = null;
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             timer = new DispatcherTimer
             {
-                Interval = TimeSpan.FromSeconds(12),
+                Interval = TimeSpan.FromSeconds(12)
             };
-            timer.Tick += new EventHandler(TickTock);
+            timer.Tick += TickTock;
             timer.Start();
         }
 
@@ -33,7 +31,7 @@ namespace Proje_filmolog
         {
             timer.Stop();
             Hide();
-            Login.LoginWin win = new Login.LoginWin();
+            var win = new LoginWin();
             win.ShowDialog();
         }
 
